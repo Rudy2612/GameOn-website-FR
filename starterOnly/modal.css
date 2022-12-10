@@ -208,6 +208,9 @@ input {
   font-size: 20px;
   height: 48px;
 }
+.text-control:invalid{
+  border: solid 3px rgb(254, 91, 91);
+}
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
