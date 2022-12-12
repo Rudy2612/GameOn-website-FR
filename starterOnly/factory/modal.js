@@ -12,3 +12,4 @@ export default function modalFactory() {
 
   return { launchModal, closeModal };
 }
+
