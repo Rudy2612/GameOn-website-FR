@@ -11,7 +11,9 @@
 </head>
 
 <body>
-
+  <div class="form-succes" id="form-succes">
+    Merci ! Votre réservation a été reçue.
+  </div>
   <div class="topnav" id="myTopnav">
     <div class="header-logo">
       <img alt="logo" src="Logo.png" width="auto" height="auto" />
@@ -59,26 +61,32 @@
       <div class="content">
         <span class="close" id="close"></span>
         <div class="modal-body">
-          <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
+          <form name="reserve" id="form" action="index.html" method="get">
             <div class="formData">
               <label for="first">Prénom</label><br>
               <input class="text-control" type="text" id="first" name="first" minlength="2" /><br>
+              <span class="form-error" id="error-first"></span>
             </div>
             <div class="formData">
               <label for="last">Nom</label><br>
-              <input class="text-control" type="text" id="last" name="last" minlength="2"/><br>
+              <input class="text-control" type="text" id="last" name="last" minlength="2" /><br>
+              <span class="form-error" id="error-last"></span>
             </div>
             <div class="formData">
               <label for="email">E-mail</label><br>
-              <input class="text-control" type="email" id="email" name="email" pattern="/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g"/><br>
+              <input class="text-control" type="email" id="email" name="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" /><br>
+              <span class="form-error" id="error-email"></span>
             </div>
             <div class="formData">
               <label for="birthdate">Date de naissance</label><br>
               <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
+              <span class="form-error" id="error-birthdate"></span>
             </div>
             <div class="formData">
               <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
               <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+              <span class="form-error" id="error-quantity"></span>
             </div>
             <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
             <div class="formData">
@@ -106,14 +114,16 @@
               <label class="checkbox-label" for="location6">
                 <span class="checkbox-icon"></span>
                 Portland</label>
+              <span class="form-error" id="error-location"></span>
             </div>
 
             <div class="formData">
-              <input class="checkbox-input" type="checkbox" id="checkbox1" checked required/>
+              <input class="checkbox-input" type="checkbox" id="checkbox1" checked required />
               <label class="checkbox2-label" for="checkbox1">
                 <span class="checkbox-icon"></span>
                 J'ai lu et accepté les conditions d'utilisation.
               </label>
+              <span class="form-error" id="error-conditions"></span>
               <br>
               <input class="checkbox-input" type="checkbox" id="checkbox2" />
               <label class="checkbox2-label" for="checkbox2">
