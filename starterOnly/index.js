@@ -4,11 +4,11 @@ import modalFactory from './factory/modal.js';
 // DOM Elements
 const modalBtn = document.querySelectorAll(".modal-btn"); // querySelector pour bouton mobile et desktop
 const closeBtn = document.getElementById("close");
-const formData = document.querySelectorAll(".formData");
-const form = document.getElementById('form')
+const form = document.getElementById('form');
+const modalBody = document.getElementById("modal-body")
 
 
-var modal = modalFactory()
+var modal = modalFactory();
 
 // launch modal event listener
 modalBtn.forEach((btn) => btn.addEventListener("click", () => modal.launchModal()));
@@ -20,6 +20,9 @@ closeBtn.addEventListener("click", () => modal.closeModal());
 
 
 form.addEventListener('submit', function (e) {
+
+    // Si les champs ne suivent pas les recommandations, le questionnaire n'est pas envoyé
+    e.preventDefault();
 
     var first = document.getElementById('first').value;
     var last = document.getElementById('last').value;
@@ -39,13 +42,32 @@ form.addEventListener('submit', function (e) {
                     if (checkMinLength(String(quantity), 1))
                         if (checkNodeIsChecked(locations))
                             if (checkbox1 === true) {
-                                modal.closeModal()
-                                document.getElementById('form-succes').style.display = "block"
-                                setTimeout(() => {
-                                    document.getElementById('form-succes').style.display = "none"
-                                }, 4000)
+
+
+                                // document.getElementById('form-succes').style.display = "block"
+                                // setTimeout(() => {
+                                //     document.getElementById('form-succes').style.display = "none"
+                                // }, 4000)
+                                // modal.closeModal()
+
+                                form.remove()
+
+                                var successTag = document.createElement('p')
+                                successTag.innerText = "Merci pour votre inscription"
+                                successTag.classList.add('modal-success')
+                                modalBody.appendChild(successTag)
+
+                                var closeModalButtonSucces = document.createElement('input')
+                                closeModalButtonSucces.value = "Fermer"
+                                closeModalButtonSucces.type = "submit"
+                                closeModalButtonSucces.classList.add('btn-submit', 'button')
+                                closeModalButtonSucces.onclick = () => modal.closeModal()
+                                modalBody.appendChild(closeModalButtonSucces)
+
+                                // Là il faut faire en sorte d'écrire que c'est bien envoyé
+                                // Créer le bouton avec les class de l'ancien bouton et faire un event onclick dessus
+
                             }
-    // return true; // Si formulaire bon, fin execution
 
 
     if (!checkMinLength(first, 2))
@@ -64,8 +86,6 @@ form.addEventListener('submit', function (e) {
         writeError('error-conditions', "Veuillez renseigner un tournois")
 
 
-    // Si les champs ne suivent pas les recommandations, le questionnaire n'est pas envoyé
-    e.preventDefault();
 
 })
 
@@ -102,6 +122,10 @@ function writeError(id, message) {
 
 
 
+
+var iconMenu = document.getElementById('iconMenu')
+
+iconMenu.addEventListener('click', editNav)
 
 
 function editNav() {

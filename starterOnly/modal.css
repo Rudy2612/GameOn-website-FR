@@ -486,15 +486,11 @@ footer {
   margin: 0 20px;
 }
 
-.form-succes{
-  display: none;
-  height: 35px;
-  background: rgb(0, 188, 0);
-  line-height: 35px;
-  color: white;
+.modal-success{
+  font-size: 1.3rem;
   text-align: center;
-  font-size: 0.8rem;
-  animation: showSucces 200ms;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 @media screen and (max-width: 800px) {
@@ -545,15 +541,3 @@ footer {
     opacity: 1;
   }
 }
-
-
-
-@keyframes showSucces {
-  from {
-    margin-top: -35px;
-  }
-  to {
-    margin-top: 0;
-  }
-}
-
