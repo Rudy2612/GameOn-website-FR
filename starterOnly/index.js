@@ -30,7 +30,7 @@ form.addEventListener('submit', function (e) {
     var last = document.getElementById('last').value;
     var email = document.getElementById('email').value;
     var birthdate = document.getElementById('birthdate').value;
-    var quantity = Number(document.getElementById('quantity').value); // => La quantité doit être une valeur numérique
+    var quantity = document.getElementById('quantity').value; // => La quantité doit être une valeur numérique
     var locations = document.getElementsByName('location');
     var checkbox1 = document.getElementById('checkbox1').checked;
     var checkbox2 = document.getElementById('checkbox2').value;
@@ -41,7 +41,7 @@ form.addEventListener('submit', function (e) {
         if (checkMinLength(last, 2)) // => Le prenom doit avoir un minimum de 2 caractères
             if (mailIsValid(email)) // => L'email doit être renseigné dans le bon format
                 if (checkMinLength(birthdate, 10)) // => La date de naissance doit être correctement renseigné, 10 caractères
-                    if (checkMinLength(String(quantity), 1)) // => L'utilisateur doit obligatoirement renseigné un nombre de concours déjà participé
+                    if (checkMinLength(quantity, 1)) // => L'utilisateur doit obligatoirement renseigné un nombre de concours déjà participé
                         if (checkNodeIsChecked(locations)) // => L'utilisateur doit avoir coché les conditions d'utilisation
                             if (checkbox1 === true) {
                                 // Si le formulaire a été correctement renseigné 
@@ -65,6 +65,8 @@ form.addEventListener('submit', function (e) {
                                 // Ajout sur le modal
                                 modalBody.appendChild(closeModalButtonSucces)
 
+                                console.log("formulaire envoyé")
+
                             }
 
     // Éxécuté après le check du formulaire
@@ -77,7 +79,7 @@ form.addEventListener('submit', function (e) {
         writeError('error-email', "Veuillez entrer un email valide.")
     if (!checkMinLength(birthdate, 10))
         writeError('error-birthdate', "Veuillez entrer un une date de naissance.")
-    if (!checkMinLength(String(quantity), 1))
+    if (!checkMinLength(quantity, 1))
         writeError('error-quantity', "Veuillez entrer le nombre de tournois auquel vous avez participé")
     if (!checkNodeIsChecked(locations))
         writeError('error-location', "Veuillez renseigner un tournois")
