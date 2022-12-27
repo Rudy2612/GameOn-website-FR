@@ -37,37 +37,32 @@ form.addEventListener('submit', function (e) {
 
 
     // # Test recommandations champs du formulaire
-    if (checkMinLength(first, 2)) // => Le nom doit avoir un minimum de 2 caractères
-        if (checkMinLength(last, 2)) // => Le prenom doit avoir un minimum de 2 caractères
-            if (mailIsValid(email)) // => L'email doit être renseigné dans le bon format
-                if (checkMinLength(birthdate, 10)) // => La date de naissance doit être correctement renseigné, 10 caractères
-                    if (checkMinLength(quantity, 1)) // => L'utilisateur doit obligatoirement renseigné un nombre de concours déjà participé
-                        if (checkNodeIsChecked(locations)) // => L'utilisateur doit avoir coché les conditions d'utilisation
-                            if (checkbox1 === true) {
-                                // Si le formulaire a été correctement renseigné 
+    if (checkMinLength(first, 2) && checkMinLength(last, 2) && mailIsValid(email) && checkMinLength(birthdate, 10) && checkMinLength(quantity, 1) && checkNodeIsChecked(locations) && checkbox1 === true) {
 
-                                // Suppression total du formulaire dans le modal
-                                form.remove()
+        // Si le formulaire a été correctement renseigné 
 
-                                // Création d'un message de confirmation
-                                var successTag = document.createElement('p')
-                                successTag.innerText = "Merci pour votre inscription"
-                                successTag.classList.add('modal-success')
-                                // Ajout sur le modal
-                                modalBody.appendChild(successTag)
+        // Suppression total du formulaire dans le modal
+        form.remove()
 
-                                // Création d'un bouton pour fermer le modal en dessous de la confirmation
-                                var closeModalButtonSucces = document.createElement('input')
-                                closeModalButtonSucces.value = "Fermer"
-                                closeModalButtonSucces.type = "submit"
-                                closeModalButtonSucces.classList.add('btn-submit', 'button')
-                                closeModalButtonSucces.onclick = () => modal.closeModal()
-                                // Ajout sur le modal
-                                modalBody.appendChild(closeModalButtonSucces)
+        // Création d'un message de confirmation
+        var successTag = document.createElement('p')
+        successTag.innerText = "Merci pour votre inscription"
+        successTag.classList.add('modal-success')
+        // Ajout sur le modal
+        modalBody.appendChild(successTag)
 
-                                console.log("formulaire envoyé")
+        // Création d'un bouton pour fermer le modal en dessous de la confirmation
+        var closeModalButtonSucces = document.createElement('input')
+        closeModalButtonSucces.value = "Fermer"
+        closeModalButtonSucces.type = "submit"
+        closeModalButtonSucces.classList.add('btn-submit', 'button')
+        closeModalButtonSucces.onclick = () => modal.closeModal()
+        // Ajout sur le modal
+        modalBody.appendChild(closeModalButtonSucces)
 
-                            }
+        console.log("formulaire envoyé")
+
+    }
 
     // Éxécuté après le check du formulaire
     // Si un élément de convient pas, afficher un message d'erreur
